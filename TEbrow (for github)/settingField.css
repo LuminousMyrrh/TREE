@@ -1,0 +1,59 @@
+.setting-field {
+    background-color: black;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    z-index: 999;
+    position: relative;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    gap: 4px;
+    min-height: 40px;
+}
+
+.buttonsInField {
+    background-color: transparent;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    padding-left: 10px;
+    
+}
+
+.buttonsInField button {
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: 3px;
+    color: white !important;
+    height: 20px;
+    width: 70px;
+    color: black;
+    font-weight: bold;
+}
+
+.buttonsInField button:hover {
+    background-color: gray;
+    font-weight: none;
+    cursor: pointer;
+}
+
+#accountButtonContainer {
+    margin-left: auto; /* Перемещаем только accountButton в самый правый край */
+    padding-right: 10px;
+}
+
+#accountButton {
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: 3px;
+    color: white !important;
+    height: 20px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+}
+
+#accountButton:hover {
+    background-color: gray;
+    font-weight: none;
+    cursor: pointer;
+}
