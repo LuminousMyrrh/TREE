@@ -1,0 +1,491 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #303030;
+}
+
+.vscode-container {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* One column for sidebar, the second for tabs and editor */
+    grid-template-rows: 40px 1fr; /* One row for tabs, the second for editor and sidebar */
+    height: 100%;
+}
+
+.tabs, .editor, .sidebar, .file-button {
+    border: 1px solid #ccc;
+}
+
+.editor {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    background-color: #000000;
+    display: flex;
+    position: relative;
+    left: 1px;
+}
+
+.file-button, .tab{
+    font-family: 'Rubik', sans-serif;
+}
+
+.sidebar {
+    grid-row: 2 / 3; /* Занимает вторую строку */
+    grid-column: 1 / 2; /* Занимает первую колонку */
+    background-color: #000000;
+    color: #fff;
+    overflow: auto;
+    width: 250px;
+    min-width: 150px;
+}
+
+.proj_name{
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    background-color: black;
+}
+
+.proj_name p {
+    position: relative;
+    top: -50%;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    user-select: none;
+    margin-left: 40px;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+
+.no_files_sidebar {
+    background-color: white;
+    color: black;
+    display: none;
+    font-size: 13px;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    animation: fadeIn 0.7s forwards; /* добавляем плавный эффект при наведении */
+    user-select: none;
+}
+
+/* Убираем стандартные отступы у body */
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Задаем стили для заголовков */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+/* Задаем размеры шрифта */
+body, input, select, textarea {
+    font-size: 14px;
+}
+
+#context-menu-tabs {
+    display:none;
+    position: absolute;
+    width: 120px;
+    height: 90px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 999;
+}
+
+#context-menu-tab {
+    display:none;
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 999;
+}
+
+#context-menu {
+    display:none;
+    position: absolute;
+    width: 120px;
+    height: 90px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 999;
+}
+
+#context-menu-file {
+    display:none;
+    position: absolute;
+    width: 120px;
+    height: 90px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 999;
+}
+
+#context-menu-tabs button, #context-menu-tab button, #context-menu button, #context-menu-file button {
+    height: 20px;
+    width: calc(100% - 10px); /* Вычитаем 10px (5px с обеих сторон) для отступа */
+    margin: 5px; /* Добавляем отступ в 5px */
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: black;
+}
+
+#context-menu-tabs button:hover, 
+#context-menu button:hover,
+#context-menu-file button:hover, 
+#context-menu-tab button:hover {
+    background-color: #ffa7a7; /* Новый цвет фона при наведении */
+    transform: scale(0.95); /* Уменьшаем размер кнопки на 5% */
+}
+
+.buttonClearAll{
+    background-color: red !important;
+
+}
+
+.file-button {
+    margin: 10px;
+    cursor: pointer;
+    padding: 5px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    width: calc(100% - 15px);
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.rename-input {
+    height: 20px;
+    all: unset;
+
+}
+
+.file-button:hover, .tab:hover {
+    background-color: #ffffff !important;
+    color: black;
+}
+
+.tabs {
+    grid-column: 2 / -1;
+    border-left: 2px solid white;
+    background-color: #000000;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Добавляем выравнивание элементов по вертикали */
+    padding: 10px;
+    gap: 4px; /* Расстояние между элементами */
+    scroll-behavior: none;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid #797878;
+    border-color: white;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 4px;
+    display: flex; /* Добавляем flex контейнер */
+    align-items: center; /* Выравниваем элементы по вертикали */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #000000;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    width: 200px;
+    text-align: center;
+}
+
+#clearAll_modal_button {
+    background-color: red; /* черный фон */
+    color: white; /* белый текст */
+    border: none; /* убираем границу */
+    border-radius: 2px; /* добавляем border-radius 2px */
+    padding: 5px 10px; /* уменьшаем отступы */
+    cursor: pointer; /* меняем курсор при наведении */
+    margin-top: 20px; /* добавляем отступ от поля ввода */
+    transition: transform 0.2s; /* добавляем плавный эффект при наведении */
+}
+
+#buttonColse_modal {
+    background-color: red; /* красный фон */
+    color: white; /* белый текст */
+    border: none; /* убираем границу */
+    border-radius: 2px; /* добавляем border-radius 2px */
+    padding: 5px 10px; /* уменьшаем отступы */
+    cursor: pointer; /* меняем курсор при наведении */
+    position: sticky; /* абсолютное позиционирование */
+    top: 10px; /* отступ сверху */
+    left: 10px; /* отступ слева */
+    transition: transform 0.2s; /* добавляем плавный эффект при наведении */
+}
+
+#buttonColse_modal:hover {
+    transform: scale(1.1); /* увеличиваем размер при наведении */
+}
+
+.modal button:hover {
+    transform: scale(1.1); /* увеличиваем размер при наведении */
+}
+
+
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: rgb(0, 0, 0);
+}
+
+#new-filename-input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+#rename-confirm-button {
+    background-color: #007704;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes scaleDown {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 80% {
+        transform: translateX(5px);
+    }
+    30%, 50%, 70% {
+        transform: translateX(-5px);
+    }
+    40%, 60% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes going_left {
+    100% {
+        transform: translateX(-500px);
+    }
+}
+
+@keyframes going_up {
+    100% {
+        transform: translateY(-50px);
+    }
+}
+
+#SubscriptionModalWin {
+    display: none;
+    background-color: orange;
+    height: 500px;
+    width: 500px;
+    top: 25%;
+    left: 38%;
+    z-index: 1001;
+    position: absolute;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.5s;
+    user-select: none;
+}
+
+#SubscriptionModalWin:hover {
+    transform: scale(1.1);
+}
+
+#firstLevelp {
+    font-family: 'VT323', monospace;
+    width: 100px;
+    margin-left: 40%;
+    margin-top: -3%;
+}
+
+#more_func_p {
+    margin-top: 30px;
+    font-size: 20px;
+    font-family: 'VT323', monospace;
+    font-weight: 300;
+    font-stretch: expanded;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-bottom: 30px;
+
+}
+
+#SubscriptionModalWin ul {
+    text-align: left; /* Resetting text-align for li content */
+    left: 5%;
+    height: 200px;
+}
+
+#SubscriptionModalWin li {
+    font-family: 'roboto mono', monospace;
+    list-style: none;
+    transition: 0.5s;
+    width: 220px;
+}
+
+#SubscriptionModalWin li:hover{
+    transform: scaleX(1.1);
+} 
+
+#buttonClose {
+    font-family: 'VT323', monospace;
+    font-stretch: extra-expanded;
+    font-size: 15px;
+    margin-left: 410px;
+    margin-top: 5px;
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    color: rgb(0, 0, 0) !important;
+    border: 1px solid transparent;
+    border-top-right-radius: 15px !important;
+    border-radius: 10px;
+}
+
+#buttonClose:hover{
+    background-color: black;
+    color: white !important;
+}
+
+#buttonNext {
+    margin-top: 30px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    background-color: #000000;
+    color: white !important;
+    transition: 1s;
+}
+
+#buttonNext:hover {
+    background-color: rgb(255, 255, 255);
+    color: black !important;
+    box-shadow: 0px 0px 105px rgb(255, 255, 211);
+    animation: scaleAnimation 0.5s forwards;
+}
+
+#buttonNext:not(:hover) {
+    animation: scaleReverseAnimation 0.5s forwards;
+}
+
+@keyframes scaleAnimation {
+    50% {
+        transform: scaleY(1.2);
+    }
+    100% {
+        transform: scaleX(1.2) scaleY(1.2);
+    }
+}
+
+@keyframes scaleReverseAnimation {
+    0% {
+        transform: scaleY(1.2) scaleX(1.2);
+    }
+    50% {
+        transform: scaleY(1.2);
+    }
+    100% {
+        transform: scaleY(1) scaleX(1);
+    }
+}
+
+/* определение анимации */
+@keyframes zoomRotate {
+    0% {
+        transform: scale(0) rotatey(0deg);
+    }
+    100% {
+        transform: scale(1) rotatey(360deg);
+    }
+}
+
+/* определение анимации */
+@keyframes outRotate {
+    0% {
+        transform: scale(1) rotatey(0deg);
+    }
+    100% {
+        transform: scale(0) rotatey(180deg);
+    }
+}

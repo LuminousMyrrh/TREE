@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREE</title>
+    <link rel="stylesheet" href="settingField.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="ace.css">
+    <link rel="icon" href="tree_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Rubik&family=VT323&display=swap" rel="stylesheet"> 
+    <script src="ui.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" defer></script>
+    <script src="editor.js" defer></script>
+    <script src="logic.js" defer></script>
+    <script src="tabs_menu.js" defer></script>
+    <script>console.log("hello there")</script>
+</head>
+<body>
+    <div class="setting-field">
+        <div class="buttonsInField">
+            <!--<button name="fileSettingsButton">File</button>-->
+            <!--<button name="editingButton">Edit</button>-->
+            <button name="viewButton" id="viewButton">View</button>
+        </div>
+        <div id="accountButtonContainer">
+            <button name="accountButton" id="accountButton">Account</button>
+        </div>
+    </div>
+    <div class="vscode-container">
+        <div class="proj_name" id="proj_name"><p>.TREE</p></div>
+        <div class="tabs">
+        </div>
+        <div class="editor" id="editor">
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="no_files_sidebar">.Create or open new file!</div>
+            <!-- Древо файлов и прочие элементы сюда -->
+        </div>
+    </div>
+
+    <div id="context-menu">
+        <button name="buttonOpen">
+            Open
+            <input type="file" id="file-input" style="display: none;">
+        </button>
+        <button name="buttonCreate">Create</button>
+        <button name="buttonClearAll" class="buttonClearAll">Clear All</button>
+    </div>
+
+    <div id="context-menu-file">
+        <button name="buttonputaway">Remove</button>
+        <button name="buttonrename">Rename</button>
+        <button name="buttoncopy">Copy</button>
+    </div>
+
+    <div id="context-menu-tabs">
+        <button name="buttonHide">Hide bar</button>
+    </div>
+
+    <div id="context-menu-tab">
+        <button name="buttonSplitToRight">Split to right</button>
+        <button name="buttonSplitToLeft">Split to left</button>
+        <button name="buttonSplitToBottom">Split to bottom</button>
+        <button name="buttonSplitToTop">Split to top</button>
+    </div>
+
+    <div id="clearAll_modal_win" class="modal">
+        <div id="clearAll_modal_win_small_window" class="modal-content">
+            <input type="text" id="agree_input_clearAll" placeholder="Enter I AGREE to confirm deletion all files">
+            <button id="clearAll_modal_button">Clear</button>
+            <button id="buttonColse_modal">X</button>
+        </div>
+    </div>
+
+    <div id="SubscriptionModalWin">
+        <button name="buttonclose" id="buttonClose">No, thanks</button>
+        <p id="firstLevelp">.Level 1</p>
+        <p id="more_func_p">Its looks like you need a bit advanced functionality!</p>
+        <ul>
+            <li>More files!</li>
+            <li>Better functionality!</li>
+            <li>Faster working with files!</li>
+            <li>Our servers will help you!</li>
+        </ul>
+        <button class="modal-button" id="buttonNext">Want more?</button>
+</div>
+</body>
+</html>

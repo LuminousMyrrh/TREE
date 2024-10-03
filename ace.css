@@ -1,0 +1,88 @@
+/* Стили для Ace Editor */
+
+/* Убираем стандартные отступы у контейнера редактора */
+#editor {
+    margin: 0;
+}
+
+.ace_editor {
+    font-size: 20px;
+}
+
+/* Стили для строки состояния */
+.ace_statusbar {
+    border-top: 1px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+/* Стили для номеров строк */
+.ace_gutter {
+    background: #f8f8f8;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* Стили для текущей строки */
+.ace_line .ace_gutter-cell.ace_error {
+    background-color: #FFD6D6;
+}
+
+/* Стили для выделенной строки */
+.ace_line .ace_gutter-cell.ace_selected {
+    background-color: #ACD4D4;
+}
+
+/* Стили для миникарты (представление всего кода) */
+.ace_scrollbar.ace_scrollbar-inner {
+    background: #f8f8f8;
+}
+
+/* Стили для полосы прокрутки */
+.ace_scrollbar-v, .ace_scrollbar-h {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+}
+
+/* Стили для ползунков полосы прокрутки */
+.ace_scrollbar-thumb {
+    background: #ccc;
+}
+
+/* Отключаем выделение текста в редакторе */
+.ace_marker-layer .ace_selection {
+    background: none;
+    border: 0;
+}
+
+/* Стили для подсветки текущей строки */
+.ace_active-line {
+    background-color: #ebebeb;
+}
+
+/* Стили для подсветки найденного текста при поиске */
+.ace_search, .ace_search_input {
+    background-color: #ddd;
+}
+
+/* Стили для найденного текста при поиске */
+.ace_search .ace_marker-layer .ace_selection {
+    background: #a6e22e;
+    border: 1px solid #ddd;
+}
+
+/* Стили для автозавершения */
+.ace_autocomplete {
+    border: 1px solid #ccc;
+}
+
+/* Стили для списка автозавершения */
+.ace_autocomplete_popup {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+/* Стили для активного элемента списка автозавершения */
+.ace_autocomplete_popup .ace_active {
+    background-color: #ACD4D4;
+    color: #000;
+}
